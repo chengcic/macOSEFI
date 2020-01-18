@@ -1,0 +1,13 @@
+FakePCIID系列篇
+
+这里有FakePCIID.kext和它的若干个插件。
+
+需要用到这些东西的场合各有不同，无法一一列举。下面仅举两例：
+
+1）驱动四代酷睿HD4400/4600核显就要用到FakePCIID.kext和FakePCIID_Intel_HD_Graphics.kext；
+
+2）对某些主板定制USB3时需要用到FakePCIID.kext和FakePCIID_XHCIMux.kext。
+
+另外还需注意，按照本人的感觉，FakePCIID会明显拖慢开机速率！（感觉因人而异，没必要为这个杠）
+
+总而言之一句话，只有当你非常明白你要用这些东西干啥时再把它放入Other里，否则就让他安安静静在备用库里躺着吧。

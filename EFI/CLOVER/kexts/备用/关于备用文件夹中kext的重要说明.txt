@@ -1,0 +1,3 @@
+说明：
+
+“备用”文件夹里面的kext，不保证能不能免-lilubetaall。如果需要用到，建议手动加上-lilubetaall。动手能力强的可以自编译免-lilubetaall的版本。

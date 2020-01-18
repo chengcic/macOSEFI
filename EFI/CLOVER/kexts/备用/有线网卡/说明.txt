@@ -1,0 +1,92 @@
+有线网卡篇
+
+    | RTL8100.kext | RTL8107E、RTL810X、RTL8139 |
+    | AtherosE2200Ethernet.kext | AR816x、AR817x、Killer E220x、Killer E2400、Killer E2500  |
+    | SmallTree-Intel-211-AT-PCIe-GBE.kext |  Intel I211|
+    | AppleIntelE1000.kext | Intel系列 82540, 82541, 82542, 82543, 82544, 82545, 82546, 82547, 82578 (P55/H55)  82579 (P67/H67) 82574L 82571 82572 82573 82574 82583 I217V |
+    | AppleIGB.kext | Intel 82575, 82576, 82580, dh89xxcc, i350, i210 and i211 |
+    | ALXEthernet.kext | Atheros alx Ethernet |
+    | FakePCIID_Intel_GbX.kext | Small Tree drivers for Intel chipset |
+
+----
+AppleYukon2.kext：驱动马牌有线网卡。
+如联想G31T-LM主板的有线网卡就可以尝试着用这个来驱动。但是见鬼的一幕是，这个驱动时而有效时而无效。另外我用这块联想主板通过BIOS+GPT+Clover+免AHCI补丁（因为南桥是ICH7，无法开启AHCI），成功黑苹果10.10.4、10.12.3、10.13.6，但是10.14.5打死都搞不起来，奇了个怪了。
+（Marvell官方中文名为“美满”，但是电脑爱好者一般都称之为马牌）
+----
+
+- `FakePCIID_Intel_GbX.kext`详细支持列表
+  - Supported devices for SmallTreeIntel8254x.kext:
+  - 8086:1010 82546EB Gigabit Ethernet Controller (Copper)
+  - 8086:1011 82545EM Gigabit Ethernet Controller (Fiber)
+  - 8086:1012 82546EB Gigabit Ethernet Controller (Fiber)
+  - 8086:101d 82546EB Gigabit Ethernet Controller
+  - 8086:1026 82545GM Gigabit Ethernet Controller
+  - 8086:1027 82545GM Gigabit Ethernet Controller
+  - 8086:1028 82545GM Gigabit Ethernet Controller
+  - 8086:105e 82571EB Gigabit Ethernet Controller (Also covered by AppleIntel8254XEthernet.kext)
+  - 8086:105f 82571EB Gigabit Ethernet Controller
+  - 8086:1079 82546GB Gigabit Ethernet Controller
+  - 8086:107a 82546GB Gigabit Ethernet Controller
+  - 8086:107b 82546GB Gigabit Ethernet Controller
+  - 8086:107c 82541PI Gigabit Ethernet Controller
+  - 8086:107d 82572EI Gigabit Ethernet Controller (Copper)
+  - 8086:107e 82572EI Gigabit Ethernet Controller (Fiber)
+  - 8086:10a4 82571EB Gigabit Ethernet Controller
+  - 8086:10b5 82546GB Gigabit Ethernet Controller (Copper)
+  - 8086:10b9 82572EI Gigabit Ethernet Controller (Copper)
+  - 8086:10bc 82571EB Gigabit Ethernet Controller (Copper)
+
+  - SmallTreeIntel82576.kext:
+  - 8086:1521 I350 Gigabit Network Connection
+  - 8086:1522 I350 Gigabit Fiber Network Connection
+  - 8086:1533 I210 Gigabit Network Connection (Also covered by AppleIntelI210Ethernet.kext)
+
+  - SmallTreeIntel8259x.kext:
+  - 8086:10c6 82598EB 10-Gigabit AF Dual Port Network Connection
+  - 8086:10c7 82598EB 10-Gigabit AF Network Connection
+  - 8086:10c8 82598EB 10-Gigabit AT Network Connection
+  - 8086:10ec 82598EB 10-Gigabit AT CX4 Network Connection
+  - 8086:10d8 82599EB 10 Gigabit Network Connection
+  - 8086:10fb 82599ES 10-Gigabit SFI/SFP+ Network Connection
+  - 8086:10f1 82598EB 10-Gigabit AF Dual Port Network Connection
+  - 8086:151c 82599 10 Gigabit TN Network Connection
+  - 8086:150b 82598EB 10-Gigabit AT2 Server Adapter
+  - 8086:1528 Ethernet Controller 10-Gigabit X540-AT2
+  - 8086:10fc 82599 10 Gigabit Dual Port Network Connection
+  - 8086:1560 Ethernet Controller X540
+
+BCM5722D.kext 兼容型号一览：
+
+　　{ DEVICEID_BCM5722, "BCM5722 NetXtreme Server Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5754, "BCM5754 NetXtreme Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5754M, "BCM5754M NetXtreme Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5755, "BCM5755 NetXtreme Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5755M, "BCM5755M NetXtreme Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5787, "BCM5787 NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5787M, "BCM5787M NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5906, "BCM5906 NetLink (TM) Fast Ethernet" },
+
+　　{ DEVICEID_BCM5906M, "BCM5906M NetLink (TM) Fast Ethernet" },
+
+　　{ DEVICEID_BCM57788, "BCM57788 NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5784, "BCM5784 NetLink Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM57785, "BCM57785 NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM57781, "BCM57781 NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM57780, "BCM57780 NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5752, "BCM5752 NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5761, "BCM5761 NetLink (TM) Gigabit Ethernet" },
+
+　　{ DEVICEID_BCM5761E, "BCM5761E NetLink (TM) Gigabit Ethernet" },
